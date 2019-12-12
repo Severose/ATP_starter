@@ -144,21 +144,6 @@ namespace csharp
         }
 
         [Test]
-        public void Conjured_DegradesTwiceAsFast()
-        {
-            GildedRose sut = new GildedRose(createItemList("Conjured", 6, 20));
-            sut.UpdateQuality();
-            Assert.AreEqual(18, sut.Items[0].Quality, "Conjured degrades twice as fast");
-        }
-        [Test]
-        public void Conjured_QualityAlwaysNonNegative()
-        {
-            GildedRose sut = new GildedRose(createItemList("Conjured", 6, 0));
-            sut.UpdateQuality();
-            Assert.AreEqual(0, sut.Items[0].Quality, "Conjured quality never goes negative");
-        }
-
-        [Test]
         public void ShopContainsMultipleItems()
         {
             List<Item> items = new List<Item> {
@@ -174,12 +159,24 @@ namespace csharp
                 Assert.AreEqual(9, items[1].SellIn, "generic item SellIn is decreased");
             });
         }
-        //NEW BEHAVIOR
-        // conjured items
 
+        [Test]
+        public void Conjured_DegradesTwiceAsFast()
+        {
+            GildedRose sut = new GildedRose(createItemList("Conjured", 6, 20));
+            sut.UpdateQuality();
+            Assert.AreEqual(18, sut.Items[0].Quality, "Conjured degrades twice as fast");
+        }
+
+        [Test]
+        public void Conjured_QualityAlwaysNonNegative()
+        {
+            GildedRose sut = new GildedRose(createItemList("Conjured", 6, 0));
+            sut.UpdateQuality();
+            Assert.AreEqual(0, sut.Items[0].Quality, "Conjured quality never goes negative");
+        }
     }
 }
-
 
 /*using System.Collections.Generic;
 using NUnit.Framework;
