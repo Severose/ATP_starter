@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace csharp
 {
@@ -7,7 +8,7 @@ namespace csharp
     {
         private ISpacelineLaunchInfoProvider _provider;
         
-        public List<LaunchInfo> LaunchList { get; }
+        public List<LaunchInfo> LaunchList { get; set; }
 
         private Boolean running;
         
@@ -36,7 +37,7 @@ namespace csharp
         }
 
         private void SortLaunches() {
-            throw new NotImplementedException("sorting logic hasn't been implemented yet");
+            LaunchList = LaunchList.OrderBy(x => x.Destination).ToList<LaunchInfo>();
         }
 
         private void AddNewLaunch(LaunchInfo info)
